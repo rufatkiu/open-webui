@@ -48,46 +48,7 @@
 			<div class=" mb-2.5 text-sm font-medium flex space-x-2 items-center">
 				<div>
 					{$WEBUI_NAME}
-					{$i18n.t('Version')}
 				</div>
-			</div>
-			<div class="flex w-full justify-between items-center">
-				<div class="flex flex-col text-xs text-gray-700 dark:text-gray-200">
-					<div class="flex gap-1">
-						<Tooltip content={WEBUI_BUILD_HASH}>
-							v{WEBUI_VERSION}
-						</Tooltip>
-
-						<a
-							href="https://github.com/open-webui/open-webui/releases/tag/v{version.latest}"
-							target="_blank"
-						>
-							{updateAvailable === null
-								? $i18n.t('Checking for updates...')
-								: updateAvailable
-									? `(v${version.latest} ${$i18n.t('available!')})`
-									: $i18n.t('(latest)')}
-						</a>
-					</div>
-
-					<button
-						class=" underline flex items-center space-x-1 text-xs text-gray-500 dark:text-gray-500"
-						on:click={() => {
-							showChangelog.set(true);
-						}}
-					>
-						<div>{$i18n.t("See what's new")}</div>
-					</button>
-				</div>
-
-				<button
-					class=" text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-850 dark:hover:bg-gray-800 transition rounded-lg font-medium"
-					on:click={() => {
-						checkForVersionUpdates();
-					}}
-				>
-					{$i18n.t('Check for updates')}
-				</button>
 			</div>
 		</div>
 
@@ -111,80 +72,93 @@
 				{#if !$WEBUI_NAME.includes('Open WebUI')}
 					<span class=" text-gray-500 dark:text-gray-300 font-medium">{$WEBUI_NAME}</span> -
 				{/if}
-
-				<span class=" capitalize">{$config?.license_metadata?.type}</span> license purchased by
-				<span class=" capitalize">{$config?.license_metadata?.organization_name}</span>
 			</div>
 		{:else}
-			<div class="flex space-x-1">
-				<a href="https://discord.gg/5rJgQTnV4s" target="_blank">
-					<img
-						alt="Discord"
-						src="https://img.shields.io/badge/Discord-Open_WebUI-blue?logo=discord&logoColor=white"
-					/>
-				</a>
-
-				<a href="https://twitter.com/OpenWebUI" target="_blank">
-					<img
-						alt="X (formerly Twitter) Follow"
-						src="https://img.shields.io/twitter/follow/OpenWebUI"
-					/>
-				</a>
-
-				<a href="https://github.com/open-webui/open-webui" target="_blank">
-					<img
-						alt="Github Repo"
-						src="https://img.shields.io/github/stars/open-webui/open-webui?style=social&label=Star us on Github"
-					/>
-				</a>
-			</div>
 		{/if}
-
-		<div class="mt-2 text-xs text-gray-400 dark:text-gray-500">
-			Emoji graphics provided by
-			<a href="https://github.com/jdecked/twemoji" target="_blank">Twemoji</a>, licensed under
-			<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>.
-		</div>
 
 		<div>
 			<pre
 				class="text-xs text-gray-400 dark:text-gray-500">Copyright (c) {new Date().getFullYear()} <a
-					href="https://openwebui.com"
+					href="https://neverforever.space"
 					target="_blank"
-					class="underline">Open WebUI (Timothy Jaeryang Baek)</a
+					class="underline">NeverForever</a
 				>
-All rights reserved.
+隐维客（Wikiless）
+项目定位
+隐维客是一个面向隐私保护的 Wikipedia 开源前端，旨在屏蔽用户与 Wikipedia 服务器的直接交互，避免 IP 追踪和数据收集，同时移除一切广告和客户端 JavaScript。用户只需访问隐维客实例，即可无缝查阅维基百科内容，却不会暴露个人信息。 
+GitHub
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+核心功能
 
-1. Redistributions of source code must retain the above copyright notice, this
-	list of conditions and the following disclaimer.
+无 JavaScript、无广告：完全在服务端渲染，客户端不会加载任何脚本或广告资源。 
+GitHub
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-	this list of conditions and the following disclaimer in the documentation
-	and/or other materials provided with the distribution.
+后端代理请求：所有对 Wikipedia 的查询均由隐维客后端完成，浏览器直接与后端通信，Wikipedia 毫无感知。 
+AlternativeTo
 
-3. Neither the name of the copyright holder nor the names of its
-	contributors may be used to endorse or promote products derived from
-	this software without specific prior written permission.
+自托管支持：开源许可（AGPL-3.0），任何组织或个人都可部署私有实例，保障访问控制和可用性。 
+黑客新闻
 
-4. Notwithstanding any other provision of this License, and as a material condition of the rights granted herein, licensees are strictly prohibited from altering, removing, obscuring, or replacing any "Open WebUI" branding, including but not limited to the name, logo, or any visual, textual, or symbolic identifiers that distinguish the software and its interfaces, in any deployment or distribution, regardless of the number of users, except as explicitly set forth in Clauses 5 and 6 below.
+发展历程
 
-5. The branding restriction enumerated in Clause 4 shall not apply in the following limited circumstances: (i) deployments or distributions where the total number of end users (defined as individual natural persons with direct access to the application) does not exceed fifty (50) within any rolling thirty (30) day period; (ii) cases in which the licensee is an official contributor to the codebase—with a substantive code change successfully merged into the main branch of the official codebase maintained by the copyright holder—who has obtained specific prior written permission for branding adjustment from the copyright holder; or (iii) where the licensee has obtained a duly executed enterprise license expressly permitting such modification. For all other cases, any removal or alteration of the "Open WebUI" branding shall constitute a material breach of license.
+接手来源：最初由芬兰开发团队维护的开源克隆项目，在创始人高三时接手并持续两年开发。
 
-6. All code, modifications, or derivative works incorporated into this project prior to the incorporation of this branding clause remain licensed under the BSD 3-Clause License, and prior contributors retain all BSD-3 rights therein; if any such contributor requests the removal of their BSD-3-licensed code, the copyright holder will do so, and any replacement code will be licensed under the project's primary license then in effect. By contributing after this clause's adoption, you agree to the project's Contributor License Agreement (CLA) and to these updated terms for all new contributions.
+镜像范围：除了 Wikipedia，还包含对 Twitter、Reddit、YouTube、Pixiv 等主流站点的隐私镜像。
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+奇源空间（NeverForever.space）
+项目演进
+
+最初名称：起初名为“夜莺论坛”（yein.pub），随后域名更迭为 sqziyuan.xyz、karstin.net、oooo.fit，最终发展为“奇源空间”（NeverForever.space）。
+
+核心定位：从 HVH 游戏外挂圈起家，向综合性大型黑客论坛转型，提供工具分享、技术交流、外挂倒卖和黑号续费服务。
+
+主要功能与服务
+
+技术交流区：涵盖渗透测试、漏洞利用、逆向工程、脚本编写等模块。
+
+资源交易区：外挂工具、游戏账号、黑产服务一应俱全，并提供会员制付费订阅。
+
+广告与会员盈利：通过论坛广告位和高级会员服务实现商业化。
+
+现状
+奇源空间现已成为国内外规模较大的黑客社区之一，注册用户数十万，日活跃度稳居前列。
+
+量核智引（Qorle）
+项目起源
+
+前身：“珊瑚搜索”（Azisky），基于 Google CSE 简易爬虫；
+
+演进：升级为 AI 集成搜索引擎“量核智引”（Qorle），日均搜索量数十万次。
+
+功能特色
+
+多源整合：聚合主流搜索引擎和 AI 问答接口，智能分发查询请求并汇总最优结果；
+
+AI 助手：内置问答机器人，提供语义理解和自然语言摘要；
+
+用户定制：支持关键词监控和搜索结果过滤，满足垂直领域需求。
+
+元维联邦（Metastem.su）
+项目定位
+
+服务内容：提供短链接、子域名注册与分发服务；
+
+分布式风险管理：通过联邦子域名架构，分散单点故障与审查风险。
+
+业务生态
+创始人依托元维联邦子域名，几乎复刻了谷歌、微软等大厂提供的主要互联网服务，包括但不限于：
+
+社交媒体、即时通信
+
+翻译、音乐、视频流媒体
+
+数字地球（地图服务）、虚拟货币
+
+去中心化域名解析
+
+消息推送与收发
+
+所有服务均免费对外开放，收益主要来自广告投放和会员续费。
 </pre>
 		</div>
 
@@ -192,8 +166,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 			{$i18n.t('Created by')}
 			<a
 				class=" text-gray-500 dark:text-gray-300 font-medium"
-				href="https://github.com/tjbck"
-				target="_blank">Timothy J. Baek</a
+				href="https://neverforever.space"
+				target="_blank">NeverForever</a
 			>
 		</div>
 	</div>
